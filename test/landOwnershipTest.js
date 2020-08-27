@@ -99,7 +99,7 @@ it("checking that the buyer can only buy, if the request is approved by the owne
 //checking the request handling function working by looking the status of the request 
 it("checking that the request approval works!!", async() => {
   let instance = await LandOwnership.deployed();
-  let id = await instance.computeId.call('kerala','Cairo',200);
+  let id = await instance.computeId.call('Triumph','Cairo',200);
   await instance.processRequest(id,3,{from : accounts[2]})
   let landInfo = await instance.landInfoForBuyer.call(id,{from : accounts[3]})
   assert.equal(landInfo[4],3)
@@ -107,7 +107,7 @@ it("checking that the request approval works!!", async() => {
 //checking that there is a successful buy is happening, expecting that the current owner to be the buyer
 it("checking that the buyer can buy the property and the ownership changes", async() => {
   let instance = await LandOwnership.deployed();
-  let id = await instance.computeId.call('kerala','malappuram','Cairo',200);
+  let id = await instance.computeId.call('Triumph','Cairo',200);
   await instance.buyProperty(id,{from : accounts[3], value :web3.utils.toWei("22", 'ether')})
   let landInfo = await instance.landInfoForBuyer.call(id,{from : accounts[3]})
   assert.equal(landInfo[0],accounts[3])
